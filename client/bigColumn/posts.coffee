@@ -7,15 +7,22 @@ Template.posts.rendered = ->
 Template.posts.posts = ->
 	Posts.find parent:null, 
 		sort: date:-1	
-###
-Template.post.comments = ->
-	Posts.find parent: @_id,
-		sort: date:-1
-###	
+
 Template.commentsList.comments = ->
 	Posts.find parent: @_id,
 		sort: date: 1
 
+Template.content.visible = ->
+	Session.get "comment"
+Template.content.events
+	'click #comment': (e,t) ->
+		Session.set "comment", true
+
+Template.comment.commentable = ->
+	Session.get "ccomment"
+Template.comment.events
+	'click #ccomment': (e,t) ->
+		Session.set "ccomment", true
 
 Template.new.events
 	'click #submit': (e,t)->
@@ -36,7 +43,7 @@ Template.new.events
 		$('#content').val('')
 
 Template.newComment.events
-	'click #submit': (e,t)->
+	'click #submit': (e,t) ->
 		unless title = t.find('#title').value?.trim()
 			alert "title can't be empty"
 		else
@@ -44,11 +51,15 @@ Template.newComment.events
 			console.log this, 'clicked'
 
 			Meteor.call "addPost",
-				parent: (@_id) 
+				parent: @_id 
 				title: title
 				content: content
 				#comments:[]
-	
+			Session.set "comment", false
+			Session.set "ccomment", false
+
 	'click #cancel': (e,t)->
 		$('#title').val('')
 		$('#content').val('')
+		Session.set "comment", false
+		Session.set "ccomment", false

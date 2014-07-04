@@ -9,13 +9,16 @@
 	<p>
 		{{content}}
 	</p>
-	{{#if true}}
 	<p>
-		<a class="btn" href="#">View details »</a>
-		{{> newComment }}
-
+		{{> commentsList}}	
+		<!--<button id="comment" type="submit" class="btn btn-default"> Comment </button>-->
 	</p>
-	{{/if}}
 
-	{{> commentsList}}
+	
+
+	<p>
+		{{> newComment }}
+	</p>
+	
+	
 </template>
