@@ -2,7 +2,7 @@ Template.posts.rendered = ->
 	Deps.autorun ->
 		Meteor.subscribe "posts", Meteor.userId()
 		Meteor.subscribe "likes"
-		Meteor.subscribe "appusers"
+		Meteor.subscribe "appusers", Meteor.userId()
 
 Template.posts.posts = ->
 	Posts.find parent:null, 
@@ -12,6 +12,8 @@ Template.commentsList.comments = ->
 	Posts.find parent: @_id,
 		sort: date: 1
 
+Template.new.loggedIn = ->
+	Meteor.userId()?
 
 Template.new.events
 	'click #submit': (e,t)->

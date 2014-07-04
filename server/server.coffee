@@ -1,11 +1,13 @@
 Meteor.publish "posts", (userid)->
-	Posts.find {}
+	if userid?
+		Posts.find {}
 
 Meteor.publish "likes", (postid)->
 	Likes.find post:postid
 
-Meteor.publish "appusers", ->
-	Meteor.users.find()
+Meteor.publish "appusers", (userid) ->
+	if useriddd?
+		Meteor.users.find()
 
 Meteor.methods
 	# {content:'',owner:'',date:'',parent:''}
