@@ -34,7 +34,7 @@ Meteor.methods
 			parent: options.parent
 		}
 		Posts.insert post
-		console.log post, (Posts.find date: post.date).fetch()
+		#console.log post, (Posts.find date: post.date).fetch()
 
 	'removePost':(id)->
 		Posts.remove _id:id

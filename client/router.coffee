@@ -5,7 +5,7 @@ Router.configure
 
 Router.map -> # => will not work
   @route 'splash', path: '/'
-  @route 'new'
+  @route 'new'#, onAfterAction: -> this.render 'posts'
   @route 'posts'
 ###
 Router.configure({
