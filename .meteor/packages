@@ -9,3 +9,5 @@ insecure
 coffeescript
 bootstrap-3
 iron-router
+accounts-password
+accounts-ui-bootstrap-3
