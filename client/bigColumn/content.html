@@ -1,0 +1,21 @@
+<template name="content">
+	<p>
+		{{owner}}, {{date}}
+	</p>	
+	<h3>
+		{{title}}
+	</h3>
+	
+	<p>
+		{{content}}
+	</p>
+	{{#if true}}
+	<p>
+		<a class="btn" href="#">View details »</a>
+		{{> newComment }}
+
+	</p>
+	{{/if}}
+
+	{{> commentsList}}
+</template>

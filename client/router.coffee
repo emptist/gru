@@ -4,10 +4,9 @@ Router.configure
   loadingTemplate: 'loading'
 
 Router.map -> # => will not work
-  @route 'splash'
-  @route 'formNewEdit'
-  @route 'articles'
+  @route 'splash', path: '/'
   @route 'new'
+  @route 'posts'
 ###
 Router.configure({
   layoutTemplate: 'layout',

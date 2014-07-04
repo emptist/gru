@@ -1,0 +1,13 @@
+<template name="post">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			 <a class="panel-title" data-toggle="collapse" data-parent="#panel-articles-list" href="#panel-element-{{this._id}}">{{title}} </a>
+		</div>
+		<div id="panel-element-{{this._id}}" class="panel-collapse collapse out">
+			<div class="panel-body">
+				{{ > content}}
+					
+			</div>
+		</div>
+	</div>
+</template>
