@@ -31,7 +31,7 @@ Meteor.methods
 		post = {
 			title: options.title
 			content: options.content
-			owner: "#{Meteor.user().username}(#{Meteor.user().emails[0].address})" #if (em = Meteor.user().emails?[0]?.address)? then em else Meteor.userId()
+			owner: Meteor.user().username #"#{Meteor.user().username}(#{Meteor.user().emails[0].address})" #if (em = Meteor.user().emails?[0]?.address)? then em else Meteor.userId()
 			date: new Date()
 			parent: options.parent
 		}

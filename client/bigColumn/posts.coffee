@@ -1,8 +1,28 @@
+Meteor.startup -> 
+	Meteor.subscribe "posts", Meteor.userId()
+	Meteor.subscribe "likes"
+	Meteor.subscribe "appusers", Meteor.userId()
+
+Template.layout.loggedIn = ->
+	Meteor.userId()?
+
+Template.smallColumn.loggedIn = ->
+	Meteor.userId()?
+
+Template.eusers.eusers = -> 
+	Meteor.users.find {}
+
+Template.postsList.posts = -> 
+	Posts.find parent:null,
+		sort: date:-1
+
+###
 Template.posts.rendered = ->
 	Deps.autorun ->
 		Meteor.subscribe "posts", Meteor.userId()
 		Meteor.subscribe "likes"
 		Meteor.subscribe "appusers", Meteor.userId()
+###
 
 Template.posts.posts = ->
 	Posts.find parent:null, 
