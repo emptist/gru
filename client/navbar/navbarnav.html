@@ -1,10 +1,10 @@
 <template name="navbarnav">
 					<ul class="nav navbar-nav">
 						<li class="active">
-							<a href="articles">Articles</a>
+							<a href={{pathFor 'articles'}}>Articles</a>
 						</li>
 						<li>
-							<a href="new">New</a>
+							<a href={{pathFor 'new'}}>New</a>
 						</li>
 						{{>dropdown1}}
 					</ul>
