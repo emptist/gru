@@ -1,10 +1,22 @@
+Meteor.publish "post", (id)->
+	if userid?
+		Posts.find _id:id
+
 Meteor.publish "posts", (userid)->
 	if userid?
-		Posts.find {},
+		Posts.find parent:null,
 			fields:
 				content:false
-				owner:false
+				#owner:false
 
+Meteor.publish "comments", (id)->
+	if userid?
+		Posts.find parent:id #,
+			###
+				fields:
+				content:false
+				#owner:false
+			###
 Meteor.publish "likes", (postid)->
 	Likes.find post:postid
 

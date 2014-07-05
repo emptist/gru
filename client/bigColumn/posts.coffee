@@ -28,6 +28,13 @@ Template.posts.posts = ->
 	Posts.find parent:null, 
 		sort: date:-1	
 
+Template.fullPost.rendered = ->
+	Deps.autorun ->
+		Meteor.subscribe "post", @_id
+		Meteor.subscribe "comments", @_id
+Template.fullPost.post = ->
+	Posts.findOne _id: @_id
+
 Template.commentsList.comments = ->
 	Posts.find parent: @_id,
 		sort: date: 1
@@ -36,7 +43,7 @@ Template.new.loggedIn = ->
 	Meteor.userId()?
 
 Template.new.events
-	'click #submit': (e,t)->
+	'click #submitNew': (e,t)->
 		unless title = t.find('#title').value?.trim()
 			alert "title can't be empty"
 		else
@@ -53,6 +60,7 @@ Template.new.events
 	'click #cancel': (e,t)->
 		$('#title').val('')
 		$('#content').val('')
+		Router.go 'posts'
 
 Template.newComment.events
 	'click #submit': (e,t) ->
