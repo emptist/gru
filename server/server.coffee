@@ -43,13 +43,22 @@ Meteor.methods
 		
 
 	'addPost':(options)->
+		date = new Date()
+		id = options.parent
 		post = {
 			title: options.title
 			content: options.content
 			owner: Meteor.user().username #"#{Meteor.user().username}(#{Meteor.user().emails[0].address})" #if (em = Meteor.user().emails?[0]?.address)? then em else Meteor.userId()
-			date: new Date()
-			parent: options.parent
+			date: date
+			parent: id
 		}
+		
+		if id?
+			Posts.update id,
+				$set: lastCommentDate: date
+		else
+			post.lastCommentDate = date  
+		
 		Posts.insert post
 		#console.log post, (Posts.find date: post.date).fetch()
 

@@ -19,7 +19,7 @@ Template.posts.rendered = ->
 
 Template.posts.posts = ->
 	Posts.find parent:null, 
-		sort: date:-1	
+		sort: lastCommentDate:-1	
 
 
 
