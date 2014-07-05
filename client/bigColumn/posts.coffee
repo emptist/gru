@@ -1,22 +1,5 @@
-###
-Meteor.startup -> 
-	Meteor.subscribe "posts", Meteor.userId()
-	Meteor.subscribe "likes"
-	Meteor.subscribe "appusers", Meteor.userId()
-###
-
 Template.layout.loggedIn = ->
 	Meteor.userId()?
-
-Template.smallColumn.loggedIn = ->
-	Meteor.userId()?
-
-Template.eusers.eusers = -> 
-	Meteor.users.find {}
-
-Template.postsList.posts = -> 
-	Posts.find parent:null,
-		sort: date:-1
 
 ###
 Template.posts.rendered = ->
@@ -25,6 +8,7 @@ Template.posts.rendered = ->
 		Meteor.subscribe "likes"
 		Meteor.subscribe "appusers", Meteor.userId()
 ###
+
 Template.posts.posts = ->
 	Posts.find parent:null, 
 		sort: date:-1	
@@ -60,19 +44,19 @@ Template.new.events
 
 Template.newComment.events
 	'click #submit': (e,t) ->
-		unless title = t.find('#title').value?.trim()
-			title = ''
-		else 
-			title
+		title = t.find('#title').value?.trim()
 		content = t.find('#content').value?.trim()
-		#console.log this, 'clicked'
-
+		unless title 
+			unless content
+				return
+			#console.log this, 'clicked'
+		
 		Meteor.call "addPost",
 			parent: @_id 
 			title: title
 			content: content
 			#comments:[]
-			false
+				
 			
 
 	'click #cancel': (e,t)->
