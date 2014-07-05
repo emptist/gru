@@ -1,5 +1,13 @@
 Template.layout.loggedIn = ->
 	Meteor.userId()?
+###
+Template.searchform.events 
+	'click #search': (e,t) ->
+		unless key = $('#searchKey').val()?
+			return
+		else
+			Meteor.go "searchResults"
+###
 
 ###
 Template.posts.rendered = ->
@@ -56,10 +64,13 @@ Template.newComment.events
 			title: title
 			content: content
 			#comments:[]
+		
+		$('#content').val('')
+		$('#title').val('').select().focus()
 				
 			
 
 	'click #cancel': (e,t)->
-		$('#title').val ''
 		$('#content').val ''
+		$('#title').val('').select().focus()
 		

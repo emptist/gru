@@ -13,17 +13,8 @@ Router.map -> # => will not work
   @route 'fullPost', 
     path:'/posts/:_id'
     data: -> Posts.findOne @params._id #, parent: @params._id
-
-###
-Router.configure({
-  layoutTemplate: 'layout',
-  notFoundTemplate: 'notFound',
-  loadingTemplate: 'loading'
-});
-Router.map(function() {
-  	@.route('splash', {path: '/'})
-  	@.route('messages');
-	@.route('events');
-	@.route('home');
-});
-###
+  ###
+  @route 'searchResults',
+    path: '/posts/:searchKey'
+    data: -> Posts.find title: @params.searchKey
+  ###
