@@ -18,22 +18,18 @@ Template.postsList.posts = ->
 	Posts.find parent:null,
 		sort: date:-1
 
+###
 Template.posts.rendered = ->
 	Deps.autorun ->
 		Meteor.subscribe "posts", Meteor.userId()
 		Meteor.subscribe "likes"
 		Meteor.subscribe "appusers", Meteor.userId()
-
+###
 Template.posts.posts = ->
 	Posts.find parent:null, 
 		sort: date:-1	
 
-Template.fullPost.rendered = ->
-	Deps.autorun ->
-		Meteor.subscribe "post", @_id
-		Meteor.subscribe "comments", @_id
-Template.fullPost.post = ->
-	Posts.findOne _id: @_id
+
 
 Template.commentsList.comments = ->
 	Posts.find parent: @_id,
@@ -65,19 +61,21 @@ Template.new.events
 Template.newComment.events
 	'click #submit': (e,t) ->
 		unless title = t.find('#title').value?.trim()
-			alert "title can't be empty"
-		else
-			content = t.find('#content').value?.trim()
-			#console.log this, 'clicked'
+			title = ''
+		else 
+			title
+		content = t.find('#content').value?.trim()
+		#console.log this, 'clicked'
 
-			Meteor.call "addPost",
-				parent: @_id 
-				title: title
-				content: content
-				#comments:[]
+		Meteor.call "addPost",
+			parent: @_id 
+			title: title
+			content: content
+			#comments:[]
+			false
 			
 
 	'click #cancel': (e,t)->
-		$('#title').val('')
-		$('#content').val('')
+		$('#title').val ''
+		$('#content').val ''
 		

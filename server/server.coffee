@@ -1,16 +1,16 @@
 Meteor.publish "post", (id)->
 	if userid?
-		Posts.find _id:id
+		Posts.findOne id
 
 Meteor.publish "posts", (userid)->
 	if userid?
-		Posts.find parent:null,
-			fields:
-				content:false
+		Posts.find {}#parent:null,
+			#fields:
+			#	content:false
 				#owner:false
 
 Meteor.publish "comments", (id)->
-	if userid?
+	if userid? and id?
 		Posts.find parent:id #,
 			###
 				fields:
