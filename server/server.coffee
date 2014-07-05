@@ -1,6 +1,9 @@
 Meteor.publish "posts", (userid)->
 	if userid?
-		Posts.find {}
+		Posts.find {},
+			fields:
+				content:false
+				owner:false
 
 Meteor.publish "likes", (postid)->
 	Likes.find post:postid
