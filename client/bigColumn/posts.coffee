@@ -1,18 +1,22 @@
+loggedIn = ->
+	Meteor.userId()?
+username = ->
+	Meteor.user()?.username
+
 Template.posts.rendered = ->
 	Deps.autorun ->
-		Meteor.subscribe "posts", Meteor.userId()
-		Meteor.subscribe "likes"
-		Meteor.subscribe "appusers", Meteor.userId()
+		Meteor.subscribe "posts", username()
+		#Meteor.subscribe "likes"
 
 Template.posts.posts = ->
 	Posts.find {}, 
 		sort: date:-1	
 
 Template.layout.loggedIn = ->
-	Meteor.userId()?
+	loggedIn()
 
 Template.new.loggedIn = ->
-	Meteor.userId()?
+	loggedIn()
 
 Template.new.events
 	'click #submitNew': (e,t)->
