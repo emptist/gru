@@ -19,6 +19,9 @@ Template.new.loggedIn = ->
 	loggedIn()
 
 Template.new.events
+	'click button': (e,t)->
+		e.preventDefault()
+		
 	'click #submitNew': (e,t)->
 		content = t.find('#content').value?.trim()
 		unless content?
