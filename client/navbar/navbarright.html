@@ -1,9 +1,13 @@
 <template name="navbarright">
 	<ul class="nav navbar-nav navbar-right">
 		<li>
-			<a href="https://github.com/emptist">GitHub</a>
+			<a href="https://github.com/emptist">My Programs: GitHub</a>
 		</li>
-		<li>{{>loginButtons}}</li>
+		<li>
+		{{#if currentUer}}
+			{{>loginButtons}}
+		{{/if}}
+		</li>
 		
 	</ul>
 	
