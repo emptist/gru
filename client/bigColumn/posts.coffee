@@ -12,12 +12,6 @@ Template.posts.posts = ->
 	Posts.find {}, 
 		sort: date:-1	
 
-Template.layout.loggedIn = ->
-	loggedIn()
-
-Template.new.loggedIn = ->
-	loggedIn()
-
 Template.new.events
 	'click button': (e,t)->
 		e.preventDefault()
